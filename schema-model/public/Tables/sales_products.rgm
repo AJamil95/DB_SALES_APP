@@ -1,0 +1,53 @@
+table "public"."sales_products" {
+  primaryKey = {
+    columns = [
+      "sales_id"
+      "products_id"
+    ]
+    name = "sales_products_pkey"
+    objectType = primaryKey
+  }
+  owner = postgres
+  columns = (
+    column "sales_id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('public.sales_products_sales_id_seq'::regclass)
+    }
+    column "products_id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('public.sales_products_products_id_seq'::regclass)
+    }
+    column "price" {
+      type = numeric(10,2)
+    }
+    column "amount" {
+      type = integer
+    }
+    column "sub_total" {
+      type = numeric(10,2)
+    }
+  )
+}
+
+foreignKey "public"."sales_products"."fk_product" {
+  columns = [
+    "products_id"
+  ]
+  referencedTable = "public"."products"
+  referencedColumns = [
+    "id"
+  ]
+}
+
+foreignKey "public"."sales_products"."fk_sales" {
+  columns = [
+    "sales_id"
+  ]
+  referencedTable = "public"."sales"
+  referencedColumns = [
+    "id"
+  ]
+}
+

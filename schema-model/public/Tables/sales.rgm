@@ -1,0 +1,36 @@
+table "public"."sales" {
+  primaryKey = {
+    columns = [
+      "id"
+    ]
+    name = "sales_pkey"
+    objectType = primaryKey
+  }
+  owner = postgres
+  columns = (
+    column "id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('public.sales_id_seq'::regclass)
+    }
+    column "client_id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('public.sales_client_id_seq'::regclass)
+    }
+    column "total" {
+      type = numeric(10,2)
+    }
+  )
+}
+
+foreignKey "public"."sales"."sales_client_id_fkey" {
+  columns = [
+    "client_id"
+  ]
+  referencedTable = "public"."clientes"
+  referencedColumns = [
+    "id"
+  ]
+}
+

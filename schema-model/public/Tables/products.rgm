@@ -1,0 +1,40 @@
+table "public"."products" {
+  primaryKey = {
+    columns = [
+      "id"
+    ]
+    name = "products_pkey"
+    objectType = primaryKey
+  }
+  owner = postgres
+  columns = (
+    column "id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('public.products_id_seq'::regclass)
+    }
+    column "code" {
+      type = character varying(50)
+    }
+    column "name" {
+      type = character varying(100)
+    }
+    column "price" {
+      type = numeric(10,2)
+    }
+  )
+}
+
+index "public"."products_code_key" {
+  table = "public"."products"
+  type = btree
+  columns = <
+    {
+      definition = code
+    }
+
+  >
+  isUnique = True
+  isConstraint = true
+}
+

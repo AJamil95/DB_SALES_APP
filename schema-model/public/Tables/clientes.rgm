@@ -1,0 +1,46 @@
+table "public"."clientes" {
+  primaryKey = {
+    columns = [
+      "id"
+    ]
+    name = "clientes_pkey"
+    objectType = primaryKey
+  }
+  owner = postgres
+  columns = (
+    column "id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('public.clientes_id_seq'::regclass)
+    }
+    column "code" {
+      type = character varying(50)
+    }
+    column "name" {
+      type = character varying(100)
+    }
+    column "cinit" {
+      type = character varying(20)
+    }
+    column "documenttype" {
+      type = character varying(5)
+    }
+    column "email" {
+      type = character varying(100)
+    }
+  )
+}
+
+index "public"."clientes_code_key" {
+  table = "public"."clientes"
+  type = btree
+  columns = <
+    {
+      definition = code
+    }
+
+  >
+  isUnique = True
+  isConstraint = true
+}
+
