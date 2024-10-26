@@ -8,6 +8,8 @@ mixed = true
 outOfOrder = true
 schemaModelLocation = "schema-model"
 validateMigrationNaming = true
+publishResult = true
+email = "test.all4@proton.me"
 
   [flyway.check]
   majorTolerance = 0
@@ -16,6 +18,9 @@ validateMigrationNaming = true
 developmentEnvironment = "development"
 shadowEnvironment = "shadow"
 enableMigrations = false
+
+  [flywayDesktop.generate]
+  undoScripts = true
 
 [redgateCompare]
 filterFile = "filter.rgf"
