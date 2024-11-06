@@ -17,7 +17,7 @@ email = "test.all4@proton.me"
 [flywayDesktop]
 developmentEnvironment = "development"
 shadowEnvironment = "shadow"
-enableMigrations = false
+enableMigrations = true
 
   [flywayDesktop.generate]
   undoScripts = true
@@ -27,3 +27,14 @@ filterFile = "filter.rgf"
 
 [redgateCompare.postgresql.options.ignores]
 ignoreNewlinesInTextObjects = "off"
+
+[environments.development]
+url = "jdbc:postgresql://localhost:5432/DB_SALES_APP"
+schemas = [ "public" ]
+displayName = "Development database"
+
+[environments.shadow]
+url = "jdbc:postgresql://localhost:5432/SHADOW_DB"
+schemas = [ "public" ]
+displayName = "Shadow database"
+provisioner = "clean"
