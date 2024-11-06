@@ -28,9 +28,6 @@ table "public"."clientes" {
     column "email" {
       type = character varying(100)
     }
-    column "newcolumn" {
-      type = integer
-    }
   )
 }
 
